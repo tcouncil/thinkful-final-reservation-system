@@ -8,7 +8,7 @@ const read = (table_id) =>
     knex('tables').select().where('table_id', table_id).first();
 
 const create = (newTable) =>
-    knex('tables').insert(newTable).returning(['table_name', 'capacity']);
+    knex('tables').insert(newTable).returning('*');
 
 const update = (table_id, reservation_id) =>
     knex('tables').where('table_id', table_id).update({ reservation_id: reservation_id, occupied: true }).returning('*');

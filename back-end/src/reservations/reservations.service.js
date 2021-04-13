@@ -11,7 +11,7 @@ const read = (reservation_id) =>
     knex('reservations').select().where('reservation_id', reservation_id).first();
 
 const create = (newReservation) =>
-    knex('reservations').insert(newReservation).returning(['first_name', 'last_name', 'mobile_number', 'people', 'reservation_date', 'reservation_time']);
+    knex('reservations').insert(newReservation).returning('*');
 
 const update = (reservation_id, updatedReservation) =>
     knex('reservations').where('reservation_id', reservation_id).update(updatedReservation).returning(['first_name', 'last_name', 'mobile_number', 'people', 'reservation_date', 'reservation_time']);
