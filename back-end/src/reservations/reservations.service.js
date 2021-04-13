@@ -4,9 +4,17 @@ const knex = require('../db/connection');
 const list = (date) =>
     knex('reservations').select().whereNot('status', 'finished').andWhere('reservation_date', date).orderBy('reservation_time');
 
-const listByMobileNumber = (mobile_number) =>
-    knex('reservations').select().where('mobile_number', 'like', `${mobile_number}%`).orderBy('reservation_date', 'desc');
+// const listByMobileNumber = (mobile_number) =>
+//     knex('reservations').select().where('mobile_number', 'like', `${mobile_number}%`).orderBy('reservation_date', 'desc');
 
+const listByMobileNumber = (mobile_number) =>
+    knex("reservations")
+        .whereRaw(
+            "translate(mobile_number, '() -', '') like ?",
+            `%${mobile_number.replace(/\D/g, "")}%`
+        )
+        .orderBy("reservation_date");
+        
 const read = (reservation_id) =>
     knex('reservations').select().where('reservation_id', reservation_id).first();
 

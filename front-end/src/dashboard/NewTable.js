@@ -15,7 +15,7 @@ export default function NewTable() {
 
     const handleTableName = (e) => setTableName(e.target.value);
     const handleCapacity = (e) => setCapacity(e.target.value);
-  
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,7 +28,7 @@ export default function NewTable() {
         axios.post(`${API_BASE_URL}/tables`, { data: table })
             .then(response => response.status === 201 ? history.push(`/dashboard`) : null)
             .catch(err => {
-                console.log(err.response.data.error)
+                console.error(err.response.data.error)
                 setReservationsError({ message: err.response.data.error })
             }
             );

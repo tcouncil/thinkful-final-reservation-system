@@ -24,8 +24,23 @@ async function validateNewReservation(req, res, next) {
 
   const { first_name, last_name, mobile_number, people, reservation_date, reservation_time, status } = req.body.data;
 
-  if (!first_name || !last_name || !mobile_number || !people || !reservation_date || !reservation_time)
-    return next({ status: 400, message: 'Be sure to included all of the following... first_name, last_name, mobile_number, people, reservation_date, and reservation_time.' });
+  if (!first_name)
+    return next({ status: 400, message: 'Be sure to include first_name' });
+
+  if (!last_name)
+    return next({ status: 400, message: 'Be sure to include last_name' });
+
+  if (!mobile_number)
+    return next({ status: 400, message: 'Be sure to include mobile_number' });
+
+  if (!people)
+    return next({ status: 400, message: 'Be sure to include people' });
+
+  if (!reservation_date)
+    return next({ status: 400, message: 'Be sure to include reservation_date' });
+
+  if (!reservation_time)
+    return next({ status: 400, message: 'Be sure to include reservation_time' });
 
   if (!reservation_date.match(/\d{4}-\d{2}-\d{2}/))
     return next({ status: 400, message: 'reservation_date is invalid!' });
@@ -55,7 +70,7 @@ async function dateValidator(req, res, next) {
 
   if (date.valueOf() < currentDate.valueOf())
     return next({ status: 400, message: "Reservations must be made in the future!" });
-    
+
   next();
 }
 
@@ -96,8 +111,23 @@ async function validateUpdate(req, res, next) {
 
   const { first_name, last_name, mobile_number, people, reservation_date, reservation_time } = req.body.data;
 
-  if (!first_name || !last_name || !mobile_number || !people || !reservation_date || !reservation_time)
-    return next({ status: 400, message: 'Be sure to included all of the following... first_name, last_name, mobile_number, people, reservation_date, and reservation_time.' });
+  if (!first_name)
+    return next({ status: 400, message: 'Be sure to include first_name' });
+
+  if (!last_name)
+    return next({ status: 400, message: 'Be sure to include last_name' });
+
+  if (!mobile_number)
+    return next({ status: 400, message: 'Be sure to include mobile_number' });
+
+  if (!people)
+    return next({ status: 400, message: 'Be sure to include people' });
+
+  if (!reservation_date)
+    return next({ status: 400, message: 'Be sure to include reservation_date' });
+
+  if (!reservation_time)
+    return next({ status: 400, message: 'Be sure to include reservation_time' });
 
   if (!reservation_date.match(/\d{4}-\d{2}-\d{2}/))
     return next({ status: 400, message: 'reservation_date is invalid!' });

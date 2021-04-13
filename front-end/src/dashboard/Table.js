@@ -14,9 +14,10 @@ export default function Table({ table }) {
         if (window.confirm('Is this table ready to seat new guests? This cannot be undone.')) {
             axios.delete(`${API_BASE_URL}/tables/${table.table_id}/seat`)
                 .then(response => response.status === 200 ? history.push(`/dashboard`) : null)
-                .catch(error => console.log(error));
+                .catch(console.error);
         }
     }
+    
     return (
         <>
             <p>{table.table_name}</p>
