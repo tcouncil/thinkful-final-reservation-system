@@ -54,16 +54,21 @@ function Dashboard({ currentDate }) {
 
   return (
     <main>
-      <h1>Dashboard</h1>
-      <div className="d-md-flex mb-3">
-        <h4 className="mb-0">Reservations for {date}</h4>
-      </div>
+      <h1 className='text-center mb-0'>Dashboard</h1>
+      <h4 className='text-center mb-0'>{date}</h4>
+      <hr className='my-0' />
       <ErrorAlert error={reservationsError} />
       <h3>Reservations</h3>
       {reservations.length === 0 ? <><b>There are no reservations</b><br /><br /></> : ''}
-      {reservationsContent}
-      <h3>Tables</h3>
-      {tablesContent}
+      <div className='row reservations'>
+        {reservationsContent}
+      </div>
+
+      <h3 className='text-center mb-0'>Tables</h3>
+      <hr className='my-0' />
+      <div className='row tables'>
+        {tablesContent}
+      </div>
     </main>
   );
 }

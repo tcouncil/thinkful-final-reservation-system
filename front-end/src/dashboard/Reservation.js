@@ -21,7 +21,7 @@ export default function Reservation({ reservation }) {
     }
 
     return (
-        <div>
+        <div className='reservationCard'>
             <p>{reservation.first_name} {reservation.last_name} - {reservation.people} - {reservation.reservation_time} #{reservation.mobile_number} {reservation.status !== 'seated' ? <b data-reservation-id-status={reservation.reservation_id}>{reservation.status}</b> : ''}
                 {reservation.status === 'booked' ? <Link to={`/reservations/${reservation.reservation_id}/edit`} className='button'>Edit</Link> : ''} {reservation.status === 'booked' ? <button onClick={handleCancel} data-reservation-id-cancel={reservation.reservation_id} className='button'>Cancel</button> : ''}
             </p>

@@ -16,11 +16,11 @@ export default function Table({ table }) {
     }
 
     return (
-        <>
+        <div className='col-2 tableCard'>
             <p>{table.table_name}</p>
             <p>{table.capacity}</p>
             {table.occupied ? <p data-table-id-status={table.table_id}>occupied</p> : <p data-table-id-status={table.table_id}>free</p>}
             {table.occupied ? <button data-table-id-finish={table.table_id} onClick={handleFinish}>Finish</button> : ''}
-        </>
+        </div>
     )
 }
