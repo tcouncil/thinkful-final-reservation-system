@@ -23,7 +23,7 @@ async function checkId(req, res, next) {
 async function validateNewTable(req, res, next) {
   if (!req.body.data) return next({ status: 400, message: 'Data Missing!' });
 
-  const { table_name, capacity } = req.body.data;
+  const { table_name, capacity, reservation_id } = req.body.data;
 
   if (!table_name || table_name === '' || table_name.length === 1)
     return next({ status: 400, message: 'Invalid table_name' });
@@ -32,6 +32,13 @@ async function validateNewTable(req, res, next) {
     return next({ status: 400, message: 'Invalid capacity' });
 
   res.locals.newTable = { table_name, capacity };
+
+  if (reservation_id) {
+    res.locals.newTable.reservation_id = reservation_id;
+    res.locals.newTable.occupied = true;
+  }
+
+
   next();
 }
 
@@ -121,9 +128,9 @@ async function update(req, res) {
  */
 async function destroy(req, res, next) {
   const table = await service.read(req.params.table_id);
-  
+
   if (!table.occupied)
-    return next({ status: 400, message: `${table.table_name} must not occupied to delete.` });
+    return next({ status: 400, message: `${table.table_name} not occupied.` });
 
   const data = await service.destroy(table.table_id);
   await reservationService.updateStatus(table.reservation_id, 'finished');

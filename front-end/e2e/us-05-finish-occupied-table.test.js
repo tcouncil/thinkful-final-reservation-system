@@ -45,8 +45,6 @@ describe("US-05 - Finish an occupied table - E2E", () => {
         reservation_id: reservation.reservation_id,
       });
 
-      console.log(table.table_id);
-
       page = await browser.newPage();
       page.on("console", onPageConsole);
       await page.setViewport({ width: 1920, height: 1080 });

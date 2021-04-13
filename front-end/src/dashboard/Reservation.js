@@ -16,6 +16,7 @@ export default function Reservation({ reservation }) {
             axios.put(`${API_BASE_URL}/reservations/${reservation.reservation_id}/status`, { data: { status: 'cancelled' } })
                 .then(response => response.status === 200 ? history.goBack() : null)
                 .catch(console.error);
+            window.location.reload();
         }
     }
 

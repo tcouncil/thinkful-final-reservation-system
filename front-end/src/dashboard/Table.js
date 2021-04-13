@@ -1,23 +1,20 @@
 import React from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 export default function Table({ table }) {
     const API_BASE_URL =
         process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
-
-    const history = useHistory();
 
     const handleFinish = (e) => {
         e.preventDefault();
 
         if (window.confirm('Is this table ready to seat new guests? This cannot be undone.')) {
             axios.delete(`${API_BASE_URL}/tables/${table.table_id}/seat`)
-                .then(response => response.status === 200 ? history.push(`/dashboard`) : null)
+                .then(response => response.status === 200 ? window.location.reload() : null)
                 .catch(console.error);
         }
     }
-    
+
     return (
         <>
             <p>{table.table_name}</p>
