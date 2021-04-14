@@ -16,7 +16,7 @@ export default function Table({ table }) {
     }
 
     return (
-        <div className='col-2 tableCard'>
+        <div className='tableCard'>
             <div className='row justify-content-between px-3'>
                 <p><b>{table.table_name}</b></p>
                 <p>
@@ -25,9 +25,12 @@ export default function Table({ table }) {
                 </p>
             </div>
             {table.occupied ?
-                <div>
-                    <em data-table-id-status={table.table_id}>occupied</em>
-                    <button data-table-id-finish={table.table_id} onClick={handleFinish} className='button px-2'>Finish</button>
+                <div className='row justify-content-between px-3'>
+                    <em data-table-id-status={table.table_id} className='pr-2'>occupied</em>
+                    <button data-table-id-finish={table.table_id} onClick={handleFinish} className='sfButton ml-2 px-2'>
+                        <span className="oi oi-check" />
+                            &nbsp; Finish
+                        </button>
                 </div>
                 : <em data-table-id-status={table.table_id}>free</em>}
         </div>

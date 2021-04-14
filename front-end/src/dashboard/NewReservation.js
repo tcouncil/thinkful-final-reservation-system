@@ -57,40 +57,41 @@ export default function NewReservation() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <h2 className='text-center'>Create a New Reservation</h2>
+            <form onSubmit={handleSubmit} className='mt-3'>
                 <div className='form-group'>
                     <label htmlFor="first_name">
-                        First Name:
+                        First Name
                     <input name='first_name' onChange={handleFirstName} className='form-control' placeholder='Enter first name' required />
                     </label>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="last_name">
-                        Last Name:
+                        Last Name
                     <input name='last_name' onChange={handleLastName} className='form-control' placeholder='Enter last name' required />
                     </label>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="mobile_number">
-                        Mobile Number:
+                        Mobile Number
                     <input name='mobile_number' onChange={handleMobileNumber} type='tel' placeholder='###-###-####' className='form-control' required />
                     </label>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="people">
-                        People:
+                        People
                     <input name='people' onChange={handlePeople} type='number' min='1' defaultValue='1' className='form-control' required />
                     </label>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="reservation_date">
-                        Date:
+                        Date
                     <input name='reservation_date' onChange={handleReservationDate} type='date' defaultValue={today} placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" className='form-control' required />
                     </label>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="reservation_time">
-                        Time:
+                        Time
                     <input name='reservation_time' onChange={handleReservationTime} type='time' placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" className='form-control' required />
                     </label>
                 </div>

@@ -20,6 +20,17 @@ export default function Reservation({ reservation }) {
         }
     }
 
+    const formatTime = (time) => {
+        let hour = time[0] + time[1];
+        let minutes = time[3] + time[4];
+        let meridiem = 'AM';
+        if (Number(hour) > 12) {
+            meridiem = 'PM';
+            hour = hour - 12;
+        }
+        return `${hour}:${minutes} ${meridiem}`
+    }
+
     return (
         <div className='reservationCard'>
             <div className='row justify-content-between px-3'>
@@ -32,7 +43,7 @@ export default function Reservation({ reservation }) {
             <div className='row justify-content-between px-3'>
                 <div>
                     <span className="oi oi-clock" />
-                    &nbsp; {reservation.reservation_time}
+                    &nbsp; {formatTime(reservation.reservation_time)}
                 </div>
                 <div>
                     <span className="oi oi-phone" />
@@ -44,7 +55,7 @@ export default function Reservation({ reservation }) {
             </div>
             {reservation.status === 'booked' ?
                 <div className='row justify-content-between px-3 pt-2'>
-                    <Link to={`/reservations/${reservation.reservation_id}/seat`} className='button p-1 px-2 '>
+                    <Link to={`/reservations/${reservation.reservation_id}/seat`} className='sfButton p-1 px-2 '>
                         <span className="oi oi-arrow-circle-bottom" />
                             &nbsp; Seat
                         </Link>

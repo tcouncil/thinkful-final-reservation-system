@@ -28,12 +28,10 @@ export default function Search() {
     }
 
     return (
-        <>
-            <form onSubmit={handleSearch}>
+        <div className='d-flex flex-column align-items-center'>
+            <h2 className='text-center'>Search for Reservation</h2>
+            <form onSubmit={handleSearch} className='mt-3 w-50'>
                 <div className='form-group'>
-                    <label htmlFor='mobile_number'>
-                        Search:
-                    </label>
                     <input name='mobile_number' placeholder="Enter a customer's phone number" onChange={handleChange} className='form-control' required />
                 </div>
                 <button type='submit' className='button mx-3 px-3'>Find</button>
@@ -41,6 +39,6 @@ export default function Search() {
             {reservationsContent.length !== 0 ? <h3>Reservations</h3> : ''}
             {reservationsContent.length === 0 ? <ErrorAlert error={reservationsError} /> : ''}
             {reservationsContent}
-        </>
+        </div>
     );
 }

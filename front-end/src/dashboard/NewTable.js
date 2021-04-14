@@ -10,7 +10,7 @@ export default function NewTable() {
     let history = useHistory();
 
     const [tableName, setTableName] = useState('');
-    const [capacity, setCapacity] = useState('');
+    const [capacity, setCapacity] = useState(1);
     const [reservationsError, setReservationsError] = useState(null);
 
     const handleTableName = (e) => setTableName(e.target.value);
@@ -41,17 +41,18 @@ export default function NewTable() {
     }
 
     return (
-        <>
-            <form onSubmit={handleSubmit}>
+        <div>
+            <h2 className='text-center'>Create a New Table</h2>
+            <form onSubmit={handleSubmit} className='mt-3'>
                 <div className='form-group'>
                     <label htmlFor="table_name">
-                        Table Name:
+                        Table Name
                     <input name='table_name' placeholder='Enter table name' minLength='2' onChange={handleTableName} className='form-control' required />
                     </label>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="capacity">
-                        Capacity:
+                        Capacity
                     <input name='capacity' type='number' min='1' defaultValue='1' onChange={handleCapacity} className='form-control' required />
                     </label>
                 </div>
@@ -61,6 +62,6 @@ export default function NewTable() {
             </button>
             </form>
             <ErrorAlert error={reservationsError} />
-        </>
+        </div>
     );
 }

@@ -18,6 +18,7 @@ form {
   min-width: 200px;
   max-width: 200px;
   min-height: 100vh;
+  border-right: solid rgba(0, 0, 0, 0.75) 2px;
 }
 
 .button {
@@ -31,6 +32,24 @@ form {
 
 .button:hover {
   background-color: #31334da9;
+  color: rgb(255, 255, 255);
+  padding: 3px;
+  border: solid 2px rgba(0, 0, 0, 0.863);
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.sfButton {
+  background-color: #2c6d52;
+  color: rgba(255, 255, 255, 0.877);
+  padding: 3px;
+  border: solid 2px rgba(0, 0, 0, 0.651);
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.sfButton:hover {
+  background-color: #2c6d52de;
   color: rgb(255, 255, 255);
   padding: 3px;
   border: solid 2px rgba(0, 0, 0, 0.863);
@@ -66,6 +85,7 @@ form {
   border-radius: 5px;
   margin: 1vw;
   background-color: #0f0f11a9;
+  min-width: 10vw;
 }
 
 .reservations {
