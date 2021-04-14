@@ -20,7 +20,7 @@ export default function Table({ table }) {
             <div className='row justify-content-between px-3'>
                 <p><b>{table.table_name}</b></p>
                 <p>
-                    <span className="oi oi-people" />
+                    <span className="oi oi-people ml-1" />
                     &nbsp; {table.capacity}
                 </p>
             </div>

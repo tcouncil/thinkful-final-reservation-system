@@ -4,6 +4,7 @@ import ErrorAlert from "../layout/ErrorAlert";
 import useQuery from '../utils/useQuery';
 import Reservation from './Reservation';
 import Table from './Table';
+import Clock from '../utils/Clock';
 
 /**
  * Defines the dashboard page.
@@ -50,7 +51,6 @@ function Dashboard({ currentDate }) {
   });
 
   const formatDate = (date) => {
-    const d = new Date(date);
     const months = {
       1: 'January',
       2: 'February',
@@ -65,28 +65,33 @@ function Dashboard({ currentDate }) {
       11: 'November',
       12: 'December'
     }
-    const month = months[d.getMonth() + 1];
-    const day = d.getDate();
-    const year = d.getFullYear();
+
+    const month = months[Number(date.slice(5, 7))];
+    const day = Number(date.slice(8, 11));
+    const year = Number(date.slice(0, 4));
 
     return `${month} ${day}, ${year}`;
   }
 
   return (
     <main>
-      <h1 className='text-center mb-0'>Dashboard</h1>
-      <h4 className='text-center mb-0'>{formatDate(date)}</h4>
+      <header className='d-flex justify-content-between px-3'>
+        <h4 className='text-center mb-0'>Dashboard</h4>
+        <h4 className='text-center mb-0'>{formatDate(date)}</h4>
+        <Clock />
+      </header >
+
       <ErrorAlert error={reservationsError} />
-      <h3 className='text-center mb-0'>Reservations</h3>
-      {reservations.length === 0 ? <><b>There are no reservations</b><br /><br /></> : ''}
-      <div className='row reservations d-flex justify-content-center'>
+      <h4 className='text-center rtHead'>Reservations</h4>
+      { reservations.length === 0 ? <><b>There are no reservations</b><br /><br /></> : ''}
+      <div className='row reservations'>
         {reservationsContent}
       </div>
-      <h3 className='text-center mb-0'>Tables</h3>
-      <div className='row tables d-flex justify-content-center'>
+      <h4 className='text-center rtHead'>Tables</h4>
+      <div className='row tables'>
         {tablesContent}
       </div>
-    </main>
+    </main >
   );
 }
 

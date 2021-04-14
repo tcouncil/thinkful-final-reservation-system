@@ -1,5 +1,5 @@
 body {
-  background-color: #1f1f24;
+  background-color: #28282c;
   color: white;
 }
 
@@ -13,12 +13,23 @@ form {
   text-align: center;
 }
 
+header {
+  min-height: 5vh;
+  background-color: #1f1f24;
+}
+
+.rtHead {
+  background-color: #1f1f24;
+  margin-bottom: 0;
+}
+
 .side-bar {
   background-color: #393a44 !important;
   min-width: 200px;
   max-width: 200px;
   min-height: 100vh;
   border-right: solid rgba(0, 0, 0, 0.75) 2px;
+  padding: 0;
 }
 
 .button {
@@ -75,21 +86,10 @@ form {
   text-decoration: none;
 }
 
-.tables {
-  display: flex;
-}
-
-.tableCard {
-  padding: 2vw;
-  border: solid rgba(255, 255, 255, 0.5) 2px;
-  border-radius: 5px;
-  margin: 1vw;
-  background-color: #0f0f11a9;
-  min-width: 10vw;
-}
-
 .reservations {
   display: flex;
+  justify-content: center;
+  margin: 0;
 }
 
 .reservationCard {
@@ -99,4 +99,19 @@ form {
   margin: 1vw;
   background-color: #0f0f11a9;
   min-width: 25vw;
+}
+
+.tables {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.tableCard {
+  padding: 2vw;
+  border: solid rgba(255, 255, 255, 0.5) 2px;
+  border-radius: 5px;
+  margin: 1vw;
+  background-color: #0f0f11a9;
+  min-width: 10vw;
 }

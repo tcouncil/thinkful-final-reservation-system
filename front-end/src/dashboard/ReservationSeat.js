@@ -9,11 +9,14 @@ export default function ReservationSeat() {
 
     const [tables, setTables] = useState([]);
     const [tableId, setTableId] = useState(0);
+
+    const [reservation, setReservation] = useState([]);
     const { reservation_id } = useParams();
 
     const history = useHistory();
 
     useEffect(loadTables, []);
+    useEffect(loadReservation, [API_BASE_URL, reservation_id]);
 
     function loadTables() {
         const abortController = new AbortController();
@@ -28,10 +31,16 @@ export default function ReservationSeat() {
         return () => abortController.abort();
     }
 
+    function loadReservation() {
+        axios.get(`${API_BASE_URL}/reservations/${reservation_id}`)
+            .then(setReservation)
+            .catch(console.error);
+    }
+
 
     const tableOptions = tables.map((table, index) => {
         return (
-            <option key={index} value={table.table_id}>{table.table_name} - {table.capacity}</option>
+            <option key={index} value={table.table_id}>{table.table_name} - {table.capacity}{table.occupied ? ' OCCUPIED' : ''}</option>
         )
     });
 
@@ -53,7 +62,12 @@ export default function ReservationSeat() {
     }
 
     return (
-        <>
+        <div className='text-center'>
+            <h2>Seat Reservation</h2>
+            {reservation.data ?
+                <p>Choose a table to seat {`${reservation.data.data.first_name} ${reservation.data.data.last_name}'s party of `}<b>{reservation.data.data.people}</b>{reservation.data.data.people > 1 ? ` people.` : ` person.`}</p>
+                : ''}
+
             <form onSubmit={handleSubmit}>
                 <div className='form-group'>
                     <select
@@ -63,9 +77,9 @@ export default function ReservationSeat() {
                         {tableOptions}
                     </select>
                 </div>
-                <button onClick={handleCancel}>Cancel</button>
-                <button type='submit'>Submit</button>
+                <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>
+                <button type='submit' className='button mx-3 px-3'>Submit</button>
             </form>
-        </>
+        </div>
     )
 }
