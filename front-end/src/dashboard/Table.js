@@ -17,10 +17,19 @@ export default function Table({ table }) {
 
     return (
         <div className='col-2 tableCard'>
-            <p>{table.table_name}</p>
-            <p>{table.capacity}</p>
-            {table.occupied ? <p data-table-id-status={table.table_id}>occupied</p> : <p data-table-id-status={table.table_id}>free</p>}
-            {table.occupied ? <button data-table-id-finish={table.table_id} onClick={handleFinish}>Finish</button> : ''}
+            <div className='row justify-content-between px-3'>
+                <p><b>{table.table_name}</b></p>
+                <p>
+                    <span className="oi oi-people" />
+                    &nbsp; {table.capacity}
+                </p>
+            </div>
+            {table.occupied ?
+                <div>
+                    <em data-table-id-status={table.table_id}>occupied</em>
+                    <button data-table-id-finish={table.table_id} onClick={handleFinish}>Finish</button>
+                </div>
+                : <em data-table-id-status={table.table_id}>free</em>}
         </div>
     )
 }

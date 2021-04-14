@@ -68,7 +68,7 @@ async function dateValidator(req, res, next) {
   if (date.getUTCDay() === 2)
     return next({ status: 400, message: "We're closed on Tuesdays!" });
 
-  if (date.valueOf() < currentDate.valueOf())
+  if (date.valueOf() < currentDate.valueOf() && date.toUTCString().slice(0, 16) !== currentDate.toUTCString().slice(0, 16))
     return next({ status: 400, message: "Reservations must be made in the future!" });
 
   next();

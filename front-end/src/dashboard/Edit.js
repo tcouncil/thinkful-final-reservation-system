@@ -63,7 +63,7 @@ export default function Edit() {
                 setLastName(res.last_name);
                 setMobileNumber(res.mobile_number);
                 setPeople(res.people);
-                setReservationDate(res.reservation_date);
+                setReservationDate(res.reservation_date.slice(0,10));
                 setReservationTime(res.reservation_time);
             })
             .catch(console.error);

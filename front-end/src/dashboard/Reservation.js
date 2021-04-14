@@ -22,10 +22,47 @@ export default function Reservation({ reservation }) {
 
     return (
         <div className='reservationCard'>
-            <p>{reservation.first_name} {reservation.last_name} - {reservation.people} - {reservation.reservation_time} #{reservation.mobile_number} {reservation.status !== 'seated' ? <b data-reservation-id-status={reservation.reservation_id}>{reservation.status}</b> : ''}
-                {reservation.status === 'booked' ? <Link to={`/reservations/${reservation.reservation_id}/edit`} className='button'>Edit</Link> : ''} {reservation.status === 'booked' ? <button onClick={handleCancel} data-reservation-id-cancel={reservation.reservation_id} className='button'>Cancel</button> : ''}
-            </p>
-            <p>{reservation.status === 'booked' ? <Link to={`/reservations/${reservation.reservation_id}/seat`} className='button'>Seat</Link> : <b data-reservation-id-status={reservation.reservation_id}>seated</b>}</p>
-        </div>
+            <div className='row justify-content-between px-3'>
+                <h5>{reservation.first_name} {reservation.last_name}</h5>
+                <div>
+                    <span className="oi oi-people" />
+                    &nbsp; {reservation.people}
+                </div>
+            </div>
+            <div className='row justify-content-between px-3'>
+                <div>
+                    <span className="oi oi-clock" />
+                    &nbsp; {reservation.reservation_time}
+                </div>
+                <div>
+                    <span className="oi oi-phone" />
+                    &nbsp; {reservation.mobile_number}
+                </div>
+                <div>
+                    <i data-reservation-id-status={reservation.reservation_id}>{reservation.status}</i>
+                </div>
+            </div>
+            {reservation.status === 'booked' ?
+                <div className='row justify-content-between px-3 pt-2'>
+                    <div>
+                        <Link to={`/reservations/${reservation.reservation_id}/seat`} className='button'>
+                            <span className="oi oi-arrow-circle-bottom" />
+                            &nbsp; Seat
+                        </Link>
+                    </div>
+                    <div>
+                        <Link to={`/reservations/${reservation.reservation_id}/edit`} className='button'>
+                            <span className="oi oi-pencil" />
+                            &nbsp; Edit
+                        </Link>
+                        <button onClick={handleCancel} data-reservation-id-cancel={reservation.reservation_id} className='button'>
+                            <span className="oi oi-x" />
+                            &nbsp; Cancel
+                        </button>
+                    </div>
+                </div>
+                : ''}
+        </div >
+
     )
 }

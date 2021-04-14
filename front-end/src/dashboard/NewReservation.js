@@ -17,7 +17,7 @@ export default function NewReservation() {
     const [lastName, setLastName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
     const [people, setPeople] = useState(1);
-    const [reservationDate, setReservationDate] = useState('');
+    const [reservationDate, setReservationDate] = useState(today);
     const [reservationTime, setReservationTime] = useState('');
     const [reservationsError, setReservationsError] = useState(null);
 

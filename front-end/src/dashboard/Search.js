@@ -30,13 +30,15 @@ export default function Search() {
     return (
         <>
             <form onSubmit={handleSearch}>
-                <label htmlFor='mobile_number'>
-                    Search
-                </label>
-                <input name='mobile_number' placeholder="Enter a customer's phone number" onChange={handleChange} />
+                <div className='form-group'>
+                    <label htmlFor='mobile_number'>
+                        Search:
+                    </label>
+                    <input name='mobile_number' placeholder="Enter a customer's phone number" onChange={handleChange} className='form-control' required />
+                </div>
                 <button type='submit'>Find</button>
             </form>
-            <h3>Reservations</h3>
+            {reservationsContent.length !== 0 ? <h3>Reservations</h3> : ''}
             {reservationsContent.length === 0 ? <ErrorAlert error={reservationsError} /> : ''}
             {reservationsContent}
         </>
