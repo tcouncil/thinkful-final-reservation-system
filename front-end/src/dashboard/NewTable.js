@@ -47,13 +47,13 @@ export default function NewTable() {
                 <div className='form-group'>
                     <label htmlFor="table_name">
                         Table Name
-                    <input name='table_name' placeholder='Enter table name' minLength='2' onChange={handleTableName} className='form-control' required />
+                    <input name='table_name' placeholder='Enter table name' onChange={handleTableName} className='form-control' required />
                     </label>
                 </div>
                 <div className='form-group'>
                     <label htmlFor="capacity">
                         Capacity
-                    <input name='capacity' type='number' min='1' defaultValue='1' onChange={handleCapacity} className='form-control' required />
+                    <input name='capacity' type='number' min='1' onChange={handleCapacity} className='form-control' required />
                     </label>
                 </div>
                 <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>

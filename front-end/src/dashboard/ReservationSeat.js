@@ -8,7 +8,7 @@ export default function ReservationSeat() {
         process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
     const [tables, setTables] = useState([]);
-    const [tableId, setTableId] = useState(1);
+    const [tableId, setTableId] = useState(0);
     const { reservation_id } = useParams();
 
     const history = useHistory();
@@ -19,7 +19,10 @@ export default function ReservationSeat() {
         const abortController = new AbortController();
 
         listTables(abortController.signal)
-            .then(setTables)
+            .then(response => {
+                setTables(response);
+                setTableId(response[0].table_id);
+            })
             .catch(error => console.error(error));
 
         return () => abortController.abort();
@@ -56,13 +59,12 @@ export default function ReservationSeat() {
                     <select
                         name='table_id'
                         onChange={handleChange}
-                        className='form-control'
                     >
                         {tableOptions}
                     </select>
                 </div>
-                <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>
-                <button type='submit' className='button mx-3 px-3'>Submit</button>
+                <button onClick={handleCancel}>Cancel</button>
+                <button type='submit'>Submit</button>
             </form>
         </>
     )
