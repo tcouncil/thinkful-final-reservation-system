@@ -27,7 +27,7 @@ export default function Table({ table }) {
             {table.occupied ?
                 <div>
                     <em data-table-id-status={table.table_id}>occupied</em>
-                    <button data-table-id-finish={table.table_id} onClick={handleFinish}>Finish</button>
+                    <button data-table-id-finish={table.table_id} onClick={handleFinish} className='button px-2'>Finish</button>
                 </div>
                 : <em data-table-id-status={table.table_id}>free</em>}
         </div>

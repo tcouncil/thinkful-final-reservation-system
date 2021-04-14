@@ -94,8 +94,8 @@ export default function NewReservation() {
                     <input name='reservation_time' onChange={handleReservationTime} type='time' placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" className='form-control' required />
                     </label>
                 </div>
-                <button onClick={handleCancel}>Cancel</button>
-                <button type='submit'>
+                <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>
+                <button type='submit' className='button mx-3 px-3'>
                     Submit
             </button>
             </form>

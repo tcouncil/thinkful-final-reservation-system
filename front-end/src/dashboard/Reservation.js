@@ -44,22 +44,18 @@ export default function Reservation({ reservation }) {
             </div>
             {reservation.status === 'booked' ?
                 <div className='row justify-content-between px-3 pt-2'>
-                    <div>
-                        <Link to={`/reservations/${reservation.reservation_id}/seat`} className='button'>
-                            <span className="oi oi-arrow-circle-bottom" />
+                    <Link to={`/reservations/${reservation.reservation_id}/seat`} className='button p-1 px-2 '>
+                        <span className="oi oi-arrow-circle-bottom" />
                             &nbsp; Seat
                         </Link>
-                    </div>
-                    <div>
-                        <Link to={`/reservations/${reservation.reservation_id}/edit`} className='button'>
-                            <span className="oi oi-pencil" />
+                    <Link to={`/reservations/${reservation.reservation_id}/edit`} className='button p-1 px-2 '>
+                        <span className="oi oi-pencil" />
                             &nbsp; Edit
                         </Link>
-                        <button onClick={handleCancel} data-reservation-id-cancel={reservation.reservation_id} className='button'>
-                            <span className="oi oi-x" />
+                    <button onClick={handleCancel} data-reservation-id-cancel={reservation.reservation_id} className='cancelButton p-1 px-2 '>
+                        <span className="oi oi-x" />
                             &nbsp; Cancel
                         </button>
-                    </div>
                 </div>
                 : ''}
         </div >

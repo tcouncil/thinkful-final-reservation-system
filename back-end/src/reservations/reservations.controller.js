@@ -57,12 +57,12 @@ async function validateNewReservation(req, res, next) {
   if (status === 'finished')
     return next({ status: 400, message: 'status can not be finished!' });
 
-  res.locals.newReservation = { first_name, last_name, mobile_number, people, reservation_date, reservation_time };
+  res.locals.reservation = { first_name, last_name, mobile_number, people, reservation_date, reservation_time };
   next();
 }
 
 async function dateValidator(req, res, next) {
-  const date = new Date(res.locals.newReservation.reservation_date);
+  const date = new Date(res.locals.reservation.reservation_date);
   const currentDate = new Date();
 
   if (date.getUTCDay() === 2)
@@ -75,7 +75,7 @@ async function dateValidator(req, res, next) {
 }
 
 function timelineValidator(req, res, next) {
-  const time = res.locals.newReservation.reservation_time;
+  const time = res.locals.reservation.reservation_time;
   let hour = time[0] + time[1];
   let minutes = time[3] + time[4];
   hour = Number(hour);
@@ -138,7 +138,7 @@ async function validateUpdate(req, res, next) {
   if (typeof people !== 'number')
     return next({ status: 400, message: 'people is not a number!' });
 
-  res.locals.updatedReservation = { first_name, last_name, mobile_number, people, reservation_date, reservation_time };
+  res.locals.reservation = { first_name, last_name, mobile_number, people, reservation_date, reservation_time };
 
   next();
 }
@@ -186,7 +186,7 @@ async function read(req, res) {
  * Create handler for creating new reservations
  */
 async function create(req, res) {
-  const data = await service.create(res.locals.newReservation);
+  const data = await service.create(res.locals.reservation);
 
   res.status(201).json({
     data: data[0],
@@ -211,7 +211,7 @@ async function updateStatus(req, res) {
  */
 async function update(req, res) {
   const { reservation_id } = req.params;
-  const data = await service.update(reservation_id, res.locals.updatedReservation);
+  const data = await service.update(reservation_id, res.locals.reservation);
   res.status(200).json({
     data: data[0],
   });
@@ -223,5 +223,5 @@ module.exports = {
   read: [asyncErrorBoundary(checkId), asyncErrorBoundary(read)],
   create: [asyncErrorBoundary(validateNewReservation), asyncErrorBoundary(dateValidator), asyncErrorBoundary(timelineValidator), asyncErrorBoundary(create)],
   updateStatus: [asyncErrorBoundary(checkId), asyncErrorBoundary(validateStatusUpdate), asyncErrorBoundary(updateStatus)],
-  update: [asyncErrorBoundary(checkId), asyncErrorBoundary(validateUpdate), asyncErrorBoundary(update)]
+  update: [asyncErrorBoundary(checkId), asyncErrorBoundary(validateUpdate), asyncErrorBoundary(dateValidator), asyncErrorBoundary(timelineValidator), asyncErrorBoundary(update)]
 };

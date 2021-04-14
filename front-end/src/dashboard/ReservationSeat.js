@@ -52,14 +52,17 @@ export default function ReservationSeat() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <select
-                    name='table_id'
-                    onChange={handleChange}
-                >
-                    {tableOptions}
-                </select>
-                <button onClick={handleCancel}>Cancel</button>
-                <button type='submit'>Submit</button>
+                <div className='form-group'>
+                    <select
+                        name='table_id'
+                        onChange={handleChange}
+                        className='form-control'
+                    >
+                        {tableOptions}
+                    </select>
+                </div>
+                <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>
+                <button type='submit' className='button mx-3 px-3'>Submit</button>
             </form>
         </>
     )

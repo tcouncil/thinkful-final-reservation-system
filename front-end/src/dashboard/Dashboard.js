@@ -56,17 +56,14 @@ function Dashboard({ currentDate }) {
     <main>
       <h1 className='text-center mb-0'>Dashboard</h1>
       <h4 className='text-center mb-0'>{date}</h4>
-      <hr className='my-0' />
       <ErrorAlert error={reservationsError} />
-      <h3>Reservations</h3>
+      <h3 className='text-center mb-0'>Reservations</h3>
       {reservations.length === 0 ? <><b>There are no reservations</b><br /><br /></> : ''}
-      <div className='row reservations'>
+      <div className='row reservations d-flex justify-content-center'>
         {reservationsContent}
       </div>
-
       <h3 className='text-center mb-0'>Tables</h3>
-      <hr className='my-0' />
-      <div className='row tables'>
+      <div className='row tables d-flex justify-content-center'>
         {tablesContent}
       </div>
     </main>

@@ -21,11 +21,39 @@ form {
 }
 
 .button {
-  background-color: #393a44;
-  color: white;
+  background-color: #31334dd2;
+  color: rgba(255, 255, 255, 0.877);
   padding: 3px;
-  border: solid 2px yellow;
+  border: solid 2px rgba(0, 0, 0, 0.651);
   border-radius: 3px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #31334da9;
+  color: rgb(255, 255, 255);
+  padding: 3px;
+  border: solid 2px rgba(0, 0, 0, 0.863);
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.cancelButton {
+  background-color: #ff0000d2;
+  color: rgba(255, 255, 255, 0.877);
+  padding: 3px;
+  border: solid 2px rgba(0, 0, 0, 0.651);
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.cancelButton:hover {
+  background-color: #ff0000a9;
+  color: rgb(255, 255, 255);
+  padding: 3px;
+  border: solid 2px rgba(0, 0, 0, 0.863);
+  border-radius: 3px;
+  text-decoration: none;
 }
 
 .tables {
@@ -34,7 +62,7 @@ form {
 
 .tableCard {
   padding: 2vw;
-  border: solid white 2px;
+  border: solid rgba(255, 255, 255, 0.5) 2px;
   border-radius: 5px;
   margin: 1vw;
   background-color: #0f0f11a9;
@@ -46,7 +74,7 @@ form {
 
 .reservationCard {
   padding: 1vw;
-  border: solid white 2px;
+  border: solid rgba(255, 255, 255, 0.5) 2px;
   border-radius: 5px;
   margin: 1vw;
   background-color: #0f0f11a9;

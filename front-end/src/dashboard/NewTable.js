@@ -55,8 +55,8 @@ export default function NewTable() {
                     <input name='capacity' type='number' min='1' defaultValue='1' onChange={handleCapacity} className='form-control' required />
                     </label>
                 </div>
-                <button onClick={handleCancel}>Cancel</button>
-                <button type='submit'>
+                <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>
+                <button type='submit' className='button mx-3 px-3'>
                     Submit
             </button>
             </form>
