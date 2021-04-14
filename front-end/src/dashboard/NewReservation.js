@@ -9,6 +9,10 @@ export default function NewReservation() {
 
     let history = useHistory();
 
+    const today = new Date().toISOString().slice(0, 10);
+
+    console.log(today);
+
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
@@ -54,30 +58,42 @@ export default function NewReservation() {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="first_name">
-                    First Name:
-                    <input name='first_name' onChange={handleFirstName} required />
-                </label>
-                <label htmlFor="last_name">
-                    Last Name:
-                    <input name='last_name' onChange={handleLastName} required />
-                </label>
-                <label htmlFor="mobile_number">
-                    Mobile Number:
-                    <input name='mobile_number' onChange={handleMobileNumber} type='tel' placeholder='###-###-####' required />
-                </label>
-                <label htmlFor="people">
-                    People:
-                    <input name='people' onChange={handlePeople} type='number' required />
-                </label>
-                <label htmlFor="reservation_date">
-                    Date:
-                    <input name='reservation_date' onChange={handleReservationDate} type='date' placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" required />
-                </label>
-                <label htmlFor="reservation_time">
-                    Time:
-                    <input name='reservation_time' onChange={handleReservationTime} type='time' placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" required />
-                </label>
+                <div className='form-group'>
+                    <label htmlFor="first_name">
+                        First Name:
+                    <input name='first_name' onChange={handleFirstName} className='form-control' placeholder='Enter first name' required />
+                    </label>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor="last_name">
+                        Last Name:
+                    <input name='last_name' onChange={handleLastName} className='form-control' placeholder='Enter last name' required />
+                    </label>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor="mobile_number">
+                        Mobile Number:
+                    <input name='mobile_number' onChange={handleMobileNumber} type='tel' placeholder='###-###-####' className='form-control' required />
+                    </label>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor="people">
+                        People:
+                    <input name='people' onChange={handlePeople} type='number' min='1' defaultValue='1' className='form-control' required />
+                    </label>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor="reservation_date">
+                        Date:
+                    <input name='reservation_date' onChange={handleReservationDate} type='date' defaultValue={today} placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" className='form-control' required />
+                    </label>
+                </div>
+                <div className='form-group'>
+                    <label htmlFor="reservation_time">
+                        Time:
+                    <input name='reservation_time' onChange={handleReservationTime} type='time' placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" className='form-control' required />
+                    </label>
+                </div>
                 <button onClick={handleCancel}>Cancel</button>
                 <button type='submit'>
                     Submit

@@ -73,30 +73,42 @@ export default function Edit() {
         <>
             {reservation.data ?
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="first_name">
-                        First Name:
-                    <input name='first_name' onChange={handleFirstName} defaultValue={reservation.data.data.first_name} required />
-                    </label>
-                    <label htmlFor="last_name">
-                        Last Name:
-                    <input name='last_name' onChange={handleLastName} defaultValue={reservation.data.data.last_name} required />
-                    </label>
-                    <label htmlFor="mobile_number">
-                        Mobile Number:
-                    <input name='mobile_number' onChange={handleMobileNumber} defaultValue={reservation.data.data.mobile_number} type='tel' placeholder='###-###-####' required />
-                    </label>
-                    <label htmlFor="people">
-                        People:
-                    <input name='people' onChange={handlePeople} type='number' defaultValue={reservation.data.data.people} required />
-                    </label>
-                    <label htmlFor="reservation_date">
-                        Date:
-                    <input name='reservation_date' onChange={handleReservationDate} defaultValue={reservation.data.data.reservation_date.slice(0, 10)} type='date' placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" required />
-                    </label>
-                    <label htmlFor="reservation_time">
-                        Time:
-                    <input name='reservation_time' onChange={handleReservationTime} defaultValue={reservation.data.data.reservation_time} type='time' placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" required />
-                    </label>
+                    <div className='form-group'>
+                        <label htmlFor="first_name">
+                            First Name:
+                            <input name='first_name' onChange={handleFirstName} defaultValue={reservation.data.data.first_name} placeholder='Enter first name' className='form-control' required />
+                        </label>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="last_name">
+                            Last Name:
+                         <input name='last_name' onChange={handleLastName} defaultValue={reservation.data.data.last_name} placeholder='Enter last name' className='form-control' required />
+                        </label>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="mobile_number">
+                            Mobile Number:
+                            <input name='mobile_number' onChange={handleMobileNumber} defaultValue={reservation.data.data.mobile_number} type='tel' placeholder='###-###-####' className='form-control' required />
+                        </label>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="people">
+                            People:
+                            <input name='people' onChange={handlePeople} type='number' min='1' defaultValue={reservation.data.data.people} className='form-control' required />
+                        </label>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="reservation_date">
+                            Date:
+                            <input name='reservation_date' onChange={handleReservationDate} defaultValue={reservation.data.data.reservation_date.slice(0, 10)} type='date' placeholder="YYYY-MM-DD" pattern="\d{4}-\d{2}-\d{2}" className='form-control' required />
+                        </label>
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="reservation_time">
+                            Time:
+                            <input name='reservation_time' onChange={handleReservationTime} defaultValue={reservation.data.data.reservation_time} type='time' placeholder="HH:MM" pattern="[0-9]{2}:[0-9]{2}" className='form-control' required />
+                        </label>
+                    </div>
                     <button onClick={handleCancel}>Cancel</button>
                     <button type='submit'>
                         Submit

@@ -9,6 +9,10 @@ main hr {
   background-image: linear-gradient(to right, rgba(51, 51, 51, 0), rgba(204, 204, 204, 0.623), rgba(51, 51, 51, 0));
 }
 
+form {
+  text-align: center;
+}
+
 .side-bar {
   background-color: #393a44 !important;
   min-width: 200px;
