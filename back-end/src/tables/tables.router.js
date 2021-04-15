@@ -10,7 +10,8 @@ const controller = require("./tables.controller");
 
 router.route("/")
     .get(controller.list)
-    .post(controller.create);
+    .post(controller.create)
+    .all(methodNotAllowed);
 
 router.route('/:table_id/seat')
     .put(controller.update)
