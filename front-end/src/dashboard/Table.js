@@ -10,7 +10,7 @@ import axios from 'axios';
 */
 export default function Table({ table }) {
     const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL;
+        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
     const handleFinish = (e) => {
         e.preventDefault();

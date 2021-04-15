@@ -9,7 +9,7 @@ import { useParams, useHistory } from 'react-router-dom';
 */
 export default function ReservationSeat() {
     const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL;
+        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
     const [tables, setTables] = useState([]);
     const [tableId, setTableId] = useState(0);
