@@ -3,10 +3,16 @@
 [Live Site](https://front-end-tcouncil.vercel.app "Restaurant Reservation System")  
 [Live API](https://back-end-tcouncil.vercel.app "Restaurant Reservation System API")
 
+## Application Summary
+A Restaurent Reservation System that is used to keep track of guest reservations
+
+## Tech Stack
+This web app was developed using JavaScript, React, Express, Node, PostgreSQL, KnexJS, HTML, CSS, and BootStrap.
+
 ## API Documentation
 
 | Route       | Method      | Status Code | Description   |
-| :---        |    :----:   |     :----:   |        ---: |
+| :---        |    :----:   |     :----:   |        ---:  |
 | /reservations      | GET   | 200  | Returns a list of reservations for the current date |
 | /reservations?date=####-##-##      | GET |  200    | Returns a list of reservations for the given date |
 | /reservations      | POST  | 201    | Creates a new reservation |
@@ -20,7 +26,7 @@
 | /tables/:table_id/seat   | DELETE  | 200      | Changes the occupied status to be unoccupied for the given table_id     |
 
 
- Reservation JSON
+ ### Reservation JSON
  ```json
 {
   "reservation_id": 1,
@@ -36,7 +42,7 @@
 }
 ```
 
-Table JSON
+### Table JSON
  ```json
 {
   "table_id": 1,
