@@ -6,7 +6,9 @@
 ## Application Summary
 A Restaurant Reservation System that is used to keep track of guest reservations and table assignments.
 ![Image of Dashboard](http://reservation.councilstudios.com/images/ss-1.jpg)
+The user can create new reservations and search for standing reservations by mobile phone number.
 ![Image of Dashboard](http://reservation.councilstudios.com/images/ss-2.jpg)
+Keep track of where reservations are seated and occupied tables.
 ![Image of Dashboard](http://reservation.councilstudios.com/images/ss-3.jpg)
 
 
