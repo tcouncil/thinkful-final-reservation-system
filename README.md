@@ -4,7 +4,7 @@
 [Live API](https://back-end-tcouncil.vercel.app "Restaurant Reservation System API")
 
 ## Application Summary
-A Restaurent Reservation System that is used to keep track of guest reservations
+A Restaurant Reservation System that is used to keep track of guest reservations and table assignments.
 
 ## Tech Stack
 This web app was developed using JavaScript, React, Express, Node, PostgreSQL, KnexJS, HTML, CSS, and BootStrap.
