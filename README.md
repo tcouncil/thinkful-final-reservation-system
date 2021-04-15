@@ -6,6 +6,8 @@
 ## Application Summary
 A Restaurant Reservation System that is used to keep track of guest reservations and table assignments.
 ![Image of Dashboard](http://reservation.councilstudios.com/images/ss-1.jpg)
+![Image of Dashboard](http://reservation.councilstudios.com/images/ss-2.jpg)
+![Image of Dashboard](http://reservation.councilstudios.com/images/ss-3.jpg)
 
 
 ## Tech Stack
