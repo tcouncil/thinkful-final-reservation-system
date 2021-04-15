@@ -58,3 +58,13 @@ This web app was developed using JavaScript, React, Express, Node, PostgreSQL, K
   "reservation_id": null
 }
 ```
+## Installation
+To install dependencies, use npm install.
+```
+npm install
+```
+
+To start the server and web page, use npm start.
+```
+npm start
+```
