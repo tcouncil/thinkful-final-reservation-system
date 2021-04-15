@@ -7,13 +7,17 @@
 
 | Route       | Method      | Description   |
 | :---        |    :----:   |          ---: |
-| /reservations      | GET       | ```json
+| /reservations      | GET       | Returns a list of reservations for the current date |
+| /reservations?date=####-##-##      | GET       | Returns a list of reservations for the given date |
+| /reservations      | POST       | Creates a new reservation |
+| /reservations/:reservation_id      | PUT       | Updates the reservation for the given ID |
+| /tables   | GET        | And more      |
+
+
+ ```json
 {
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
 }
-```  |
-| /tables   | GET        | And more      |
-
-
+```
