@@ -4,9 +4,6 @@ const knex = require('../db/connection');
 const list = (date) =>
     knex('reservations').select().whereNot('status', 'finished').andWhere('reservation_date', date).orderBy('reservation_time');
 
-// const listByMobileNumber = (mobile_number) =>
-//     knex('reservations').select().where('mobile_number', 'like', `${mobile_number}%`).orderBy('reservation_date', 'desc');
-
 const listByMobileNumber = (mobile_number) =>
     knex("reservations")
         .whereRaw(

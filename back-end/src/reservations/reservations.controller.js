@@ -61,6 +61,9 @@ async function validateNewReservation(req, res, next) {
   next();
 }
 
+/**
+ * Date validation middleware
+ */
 async function dateValidator(req, res, next) {
   const date = new Date(res.locals.reservation.reservation_date);
   const currentDate = new Date();
@@ -74,6 +77,9 @@ async function dateValidator(req, res, next) {
   next();
 }
 
+/**
+ * Timeline validation middleware
+ */
 function timelineValidator(req, res, next) {
   const time = res.locals.reservation.reservation_time;
   let hour = time[0] + time[1];
@@ -90,6 +96,9 @@ function timelineValidator(req, res, next) {
   next();
 }
 
+/**
+ * Status validation middleware
+ */
 async function validateStatusUpdate(req, res, next) {
   const currentStatus = res.locals.reservation.status;
   const { status } = req.body.data;
@@ -106,6 +115,9 @@ async function validateStatusUpdate(req, res, next) {
   next();
 }
 
+/**
+ * Update validation middleware
+ */
 async function validateUpdate(req, res, next) {
   if (!req.body.data) return next({ status: 400, message: 'Data Missing!' });
 
