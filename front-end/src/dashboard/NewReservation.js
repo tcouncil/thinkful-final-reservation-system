@@ -15,8 +15,6 @@ export default function NewReservation() {
 
     const today = new Date().toISOString().slice(0, 10);
 
-    console.log(today);
-
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
