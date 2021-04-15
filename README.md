@@ -5,6 +5,8 @@
 
 ## Application Summary
 A Restaurant Reservation System that is used to keep track of guest reservations and table assignments.
+![Image of Dashboard](http://reservation.councilstudios.com/images/ss-1.jpg)
+
 
 ## Tech Stack
 This web app was developed using JavaScript, React, Express, Node, PostgreSQL, KnexJS, HTML, CSS, and BootStrap.
