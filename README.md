@@ -32,7 +32,7 @@ This web app was developed using JavaScript, React, Express, Node, PostgreSQL, K
 | /tables/:table_id/seat   | DELETE  | 200      | Changes the occupied status to be unoccupied for the given table_id     |
 
 
- ### Reservation JSON
+ ### Reservation JSON Example
  ```json
 {
   "reservation_id": 1,
@@ -48,7 +48,7 @@ This web app was developed using JavaScript, React, Express, Node, PostgreSQL, K
 }
 ```
 
-### Table JSON
+### Table JSON Example
  ```json
 {
   "table_id": 1,
