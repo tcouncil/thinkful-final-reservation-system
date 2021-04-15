@@ -69,7 +69,7 @@ To start the server and web page, use npm start.
 npm start
 ```
 Connect to a postgresql database by creating .env files for the back-end and front-end
-```
+```js
 // back-end .env example -> Connects to database
 DATABASE_URL=enter-your-production-database-url-here
 DATABASE_URL_DEVELOPMENT=enter-your-development-database-url-here
