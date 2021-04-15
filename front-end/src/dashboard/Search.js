@@ -3,6 +3,10 @@ import { listReservations } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
 import Reservation from './Reservation';
 
+/**
+* Search Form Component
+* @returns {JSX.Element}
+*/
 export default function Search() {
     const [mobile_number, setMobileNumber] = useState('');
     const [reservations, setReservations] = useState([]);
@@ -28,17 +32,20 @@ export default function Search() {
     }
 
     return (
-        <div className='d-flex flex-column align-items-center'>
-            <h2 className='text-center'>Search for Reservation</h2>
-            <form onSubmit={handleSearch} className='mt-3 w-50'>
-                <div className='form-group'>
-                    <input name='mobile_number' placeholder="Enter a customer's phone number" onChange={handleChange} className='form-control' required />
-                </div>
-                <button type='submit' className='button mx-3 px-3'>Find</button>
-            </form>
-            {reservationsContent.length !== 0 ? <h3>Reservations</h3> : ''}
-            {reservationsContent.length === 0 ? <ErrorAlert error={reservationsError} /> : ''}
-            {reservationsContent}
-        </div>
+        <>
+            <h2 className='text-center rtHead pb-2'>Search for Reservation</h2>
+            <div className='d-flex flex-column align-items-center'>
+
+                <form onSubmit={handleSearch} className='mt-3 w-50'>
+                    <div className='form-group'>
+                        <input name='mobile_number' placeholder="Enter a customer's phone number" onChange={handleChange} className='form-control' required />
+                    </div>
+                    <button type='submit' className='button mx-3 px-3'>Find</button>
+                </form>
+                {reservationsContent.length !== 0 ? <h3>Reservations</h3> : ''}
+                {reservationsContent.length === 0 ? <ErrorAlert error={reservationsError} /> : ''}
+                {reservationsContent}
+            </div>
+        </>
     );
 }

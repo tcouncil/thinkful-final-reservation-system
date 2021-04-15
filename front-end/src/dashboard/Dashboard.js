@@ -8,8 +8,8 @@ import Clock from '../utils/Clock';
 
 /**
  * Defines the dashboard page.
- * @param date
- *  the date for which the user wants to view reservations.
+ * @param currentDate
+ *  the current date.
  * @returns {JSX.Element}
  */
 function Dashboard({ currentDate }) {
@@ -75,15 +75,14 @@ function Dashboard({ currentDate }) {
 
   return (
     <main>
-      <header className='d-flex justify-content-between px-3'>
-        <h4 className='text-center mb-0'>Dashboard</h4>
-        <h4 className='text-center mb-0'>{formatDate(date)}</h4>
-        <Clock />
+      <header className={date !== currentDate ? 'd-flex justify-content-center' : 'd-flex justify-content-end'}>
+        <h5 className='text-center mb-0 mr-2'>{date !== currentDate ? <em>Previewing </em> : ''}{formatDate(date)}</h5>
+        {date !== currentDate ? '' : <Clock />}
       </header >
 
       <ErrorAlert error={reservationsError} />
       <h4 className='text-center rtHead'>Reservations</h4>
-      { reservations.length === 0 ? <><b>There are no reservations</b><br /><br /></> : ''}
+      { reservations.length === 0 ? <div className='text-center'><b>There are no reservations</b><br /><br /></div> : ''}
       <div className='row reservations'>
         {reservationsContent}
       </div>

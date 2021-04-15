@@ -1,9 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
+
+/**
+* Table Card Component
+* @param table
+* Table object containing table information
+* @returns {JSX.Element}
+*/
 export default function Table({ table }) {
     const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
+        process.env.REACT_APP_API_BASE_URL;
 
     const handleFinish = (e) => {
         e.preventDefault();

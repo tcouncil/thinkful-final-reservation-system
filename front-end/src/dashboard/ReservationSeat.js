@@ -3,9 +3,13 @@ import { listTables } from "../utils/api";
 import axios from 'axios';
 import { useParams, useHistory } from 'react-router-dom';
 
+/**
+* Seat reservation component
+* @returns {JSX.Element}
+*/
 export default function ReservationSeat() {
     const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
+        process.env.REACT_APP_API_BASE_URL;
 
     const [tables, setTables] = useState([]);
     const [tableId, setTableId] = useState(0);
@@ -24,7 +28,7 @@ export default function ReservationSeat() {
         listTables(abortController.signal)
             .then(response => {
                 setTables(response);
-                setTableId(response[0].table_id);
+                setTableId(response[0].table_id); // Sets our default value
             })
             .catch(error => console.error(error));
 
@@ -63,7 +67,7 @@ export default function ReservationSeat() {
 
     return (
         <div className='text-center'>
-            <h2>Seat Reservation</h2>
+            <h2 className='rtHead pb-2'>Seat Reservation</h2>
             {reservation.data ?
                 <p>Choose a table to seat {`${reservation.data.data.first_name} ${reservation.data.data.last_name}'s party of `}<b>{reservation.data.data.people}</b>{reservation.data.data.people > 1 ? ` people.` : ` person.`}</p>
                 : ''}

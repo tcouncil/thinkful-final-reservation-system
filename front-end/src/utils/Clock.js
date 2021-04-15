@@ -1,39 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import moment from 'moment';
+import useInterval from './useInterval';
 
-export default class Clock extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            time: moment().format('LTS'),
-            one: true,
-            two: false,
-            three: false,
-            four: false,
-            class: ''
-        }
-    }
-    componentDidMount() {
-        setInterval(() => {
-            if (this.state.one === true) {
-                this.setState({
-                    time: moment().format('LTS')
-                })
-            }
-            else if (this.state.four === true) {
-                this.setState({
-                    time: moment().format('LT')
-                })
-            }
-        }, 1000)
-    }
-    
-    render() {
-        return (
-            <div id="clock" style={this.state.background} onClick={this.clicked}>
-                <h4 className={this.state.class}>{this.state.time}</h4>
-            </div>
-        )
-    }
+/**
+* 12 Hour Clock Component
+* @returns {JSX.Element}
+*/
+export default function Clock() {
+    const [time, setTime] = useState(moment().format('LT'));
+
+    useInterval(() => {
+        setTime(moment().format('LT'));
+    }, 1000);
+
+    return (
+        <div id="clock">
+            <h5 className='mr-3'>{time}</h5>
+        </div>
+    )
 }
-

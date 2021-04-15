@@ -14,13 +14,13 @@ form {
 }
 
 header {
-  min-height: 5vh;
   background-color: #1f1f24;
 }
 
 .rtHead {
   background-color: #1f1f24;
   margin-bottom: 0;
+  text-shadow: 2px 2px #000000;
 }
 
 .side-bar {
@@ -114,4 +114,55 @@ header {
   margin: 1vw;
   background-color: #0f0f11a9;
   min-width: 10vw;
+}
+
+.navbar-brand {
+  font-family: 'Tangerine', cursive;
+  font-size: 2rem;
+  text-shadow: 1px 1px #000000;
+}
+
+.resName {
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 1px 1px #000000;
+}
+
+.nav-link {
+  text-shadow: 1px 1px #000000;
+}
+
+@media all and (max-width: 700px) {
+  .side-bar {
+    max-width: 100vw;
+    min-height: 1vh;
+    border-right: none;
+    border-bottom: solid rgba(0, 0, 0, 0.75) 2px;
+  }
+  .respond {
+    flex-direction: column;
+  }
+  .respondUL {
+    flex-direction: row !important;
+  }
+  .nav-link {
+    padding: 1vw !important;
+  }
+}
+
+@media all and (max-width: 610px) {
+  .side-bar {
+    font-size: smaller;
+  }
+  h4 {
+    font-size: 1rem;
+  }
+  h5 {
+    font-size: 1rem;
+  }
+}
+
+@media all and (max-width: 370px) {
+  .side-bar {
+    font-size: 12px;
+  }
 }

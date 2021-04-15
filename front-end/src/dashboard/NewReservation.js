@@ -3,9 +3,13 @@ import { useHistory } from "react-router-dom";
 import ErrorAlert from "../layout/ErrorAlert";
 import axios from 'axios';
 
+/**
+* New Reservation Form Component
+* @returns {JSX.Element}
+*/
 export default function NewReservation() {
     const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
+        process.env.REACT_APP_API_BASE_URL;
 
     let history = useHistory();
 
@@ -57,7 +61,7 @@ export default function NewReservation() {
 
     return (
         <>
-            <h2 className='text-center'>Create a New Reservation</h2>
+            <h2 className='text-center rtHead pb-2'>Create a New Reservation</h2>
             <form onSubmit={handleSubmit} className='mt-3'>
                 <div className='form-group'>
                     <label htmlFor="first_name">

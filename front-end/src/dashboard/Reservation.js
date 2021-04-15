@@ -1,32 +1,41 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
+
+/**
+* Reservation Card Component
+* @param reservation
+* Reservation object containing reservation information
+* @returns {JSX.Element}
+*/
 export default function Reservation({ reservation }) {
     const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
-
-    const history = useHistory();
+        process.env.REACT_APP_API_BASE_URL;
 
     const handleCancel = (e) => {
         e.preventDefault();
 
         if (window.confirm('Do you want to cancel this reservation? This cannot be undone.')) {
             axios.put(`${API_BASE_URL}/reservations/${reservation.reservation_id}/status`, { data: { status: 'cancelled' } })
-                .then(response => response.status === 200 ? history.goBack() : null)
+                .then(response => response.status === 200 ? window.location.reload() : null)
                 .catch(console.error);
-            window.location.reload();
         }
     }
 
+    /**
+    * Formats 24 Hour Time into 12 Hour AM PM Clock
+    * @param time
+    * 24 hour time, formatted as a string "00:00"
+    * @returns String formatted as "12:00 AM"
+    */
     const formatTime = (time) => {
         let hour = time[0] + time[1];
         let minutes = time[3] + time[4];
         let meridiem = 'AM';
-        if (Number(hour) > 12) {
+        if (Number(hour) >= 12) {
             meridiem = 'PM';
-            hour = hour - 12;
+            Number(hour) === 12 ? hour = 12 : hour -= 12;
         }
         return `${hour}:${minutes} ${meridiem}`
     }
@@ -34,22 +43,22 @@ export default function Reservation({ reservation }) {
     return (
         <div className='reservationCard'>
             <div className='row justify-content-between px-3'>
-                <h5>{reservation.first_name} {reservation.last_name}</h5>
+                <h5 className='resName'>{reservation.first_name} {reservation.last_name}</h5>
                 <div>
                     <span className="oi oi-people" />
                     &nbsp; {reservation.people}
                 </div>
             </div>
             <div className='row justify-content-between px-3'>
-                <div>
+                <div className='mx-1'>
                     <span className="oi oi-clock" />
                     &nbsp; {formatTime(reservation.reservation_time)}
                 </div>
-                <div>
+                <div className='mx-1'>
                     <span className="oi oi-phone" />
                     &nbsp; {reservation.mobile_number}
                 </div>
-                <div>
+                <div className='mx-1'>
                     <i data-reservation-id-status={reservation.reservation_id}>{reservation.status}</i>
                 </div>
             </div>
