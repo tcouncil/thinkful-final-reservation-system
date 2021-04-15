@@ -7,13 +7,13 @@
 
 | Route       | Method      | Description   |
 | :---        |    :----:   |          ---: |
-| /reservations      | GET       | Here's this   |
-| /tables   | GET        | And more      |
-
-```json
+| /reservations      | GET       | ```json
 {
   "firstName": "John",
   "lastName": "Smith",
   "age": 25
 }
-```
+```  |
+| /tables   | GET        | And more      |
+
+
