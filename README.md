@@ -11,7 +11,6 @@ Keep track of where reservations are seated and occupied tables.
 ## Screenshots
 ![Image of Dashboard](http://reservation.councilstudios.com/images/ss-1.jpg)
 ![Image of New Reservation](http://reservation.councilstudios.com/images/ss-2.jpg)
-![Image of Table Assignment](http://reservation.councilstudios.com/images/ss-3.jpg)
 ## Tech Stack
 This web app was developed using JavaScript, React, Express, Node, PostgreSQL, KnexJS, HTML, CSS, and BootStrap.
 
