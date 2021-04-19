@@ -1,7 +1,7 @@
 # Thinkful-Final-Capstone: Restaurant Reservation System
 
-[Live Site](https://front-end-tcouncil.vercel.app "Restaurant Reservation System")  
-[Live API](https://back-end-tcouncil.vercel.app "Restaurant Reservation System API")
+## Live Site
+[Restaurant Reservation System](https://front-end-tcouncil.vercel.app "Restaurant Reservation System")  
 
 ## Application Summary
 A Restaurant Reservation System that is used to keep track of guest reservations and table assignments.  
