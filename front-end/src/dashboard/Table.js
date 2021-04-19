@@ -1,6 +1,5 @@
 import React from 'react';
-import axios from 'axios';
-
+import { finishTable } from '../utils/api';
 
 /**
 * Table Card Component
@@ -9,16 +8,14 @@ import axios from 'axios';
 * @returns {JSX.Element}
 */
 export default function Table({ table }) {
-    const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
-
-    const handleFinish = (e) => {
+    const handleFinish = async (e) => {
         e.preventDefault();
 
         if (window.confirm('Is this table ready to seat new guests? This cannot be undone.')) {
-            axios.delete(`${API_BASE_URL}/tables/${table.table_id}/seat`)
-                .then(response => response.status === 200 ? window.location.reload() : null)
-                .catch(console.error);
+            const status = await finishTable(table.table_id);
+
+            if (status === 200)
+                window.location.reload()
         }
     }
 

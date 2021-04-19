@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { listReservations, listTables } from "../utils/api";
+import { next, previous } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
 import useQuery from '../utils/useQuery';
 import Reservation from './Reservation';
@@ -19,7 +20,7 @@ function Dashboard({ currentDate }) {
 
   const query = useQuery();
   const qDate = query.get('date');
-  const date = qDate ? qDate : currentDate;
+  const [date, setDate] = useState(qDate ? qDate : currentDate)
 
   useEffect(loadDashboard, [date]);
 
@@ -36,6 +37,11 @@ function Dashboard({ currentDate }) {
       .catch(error => console.error(error));
 
     return () => abortController.abort();
+  }
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+    // history.push(`/dashboard?date=${e.target.value}`);
   }
 
   const reservationsContent = reservations.map((reservation, index) => {
@@ -75,17 +81,28 @@ function Dashboard({ currentDate }) {
 
   return (
     <main>
-      <header className={date !== currentDate ? 'd-flex justify-content-center' : 'd-flex justify-content-end'}>
-        <h5 className='text-center mb-0 mr-2'>{date !== currentDate ? <em>Previewing </em> : ''}{formatDate(date)}</h5>
-        {date !== currentDate ? '' : <Clock />}
+      <header className='d-flex justify-content-end'>
+        <h5 className='text-center mb-0 mr-2'>{formatDate(currentDate)}</h5>
+        <Clock />
       </header >
-
       <ErrorAlert error={reservationsError} />
       <h4 className='text-center rtHead'>Reservations</h4>
-      { reservations.length === 0 ? <div className='text-center'><b>There are no reservations</b><br /><br /></div> : ''}
-      <div className='row reservations'>
-        {reservationsContent}
+      <div className='text-center rtHead'>
+        <div>
+          <button className='button mx-2' onClick={() => setDate(previous(date))}>Prev Day</button>
+          <button className='button mx-2' onClick={() => setDate(currentDate)}>Today</button>
+          <button className='button mx-2' onClick={() => setDate(next(date))}>Next Day</button>
+        </div>
+        <input name='date' type='date' className='my-2' value={date} onChange={handleDateChange} />
+
       </div>
+      { reservations.length === 0 ?
+        <div className='text-center'><b>There are no reservations on {formatDate(date)}</b><br /><br /></div>
+        :
+        <div className='row reservations'>
+          {reservationsContent}
+        </div>}
+
       <h4 className='text-center rtHead'>Tables</h4>
       <div className='row tables'>
         {tablesContent}

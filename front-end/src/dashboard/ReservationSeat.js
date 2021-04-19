@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { listTables } from "../utils/api";
-import axios from 'axios';
+import { listTables, readReservation, seatReservation } from "../utils/api";
 import { useParams, useHistory } from 'react-router-dom';
+import ErrorAlert from "../layout/ErrorAlert";
 
 /**
 * Seat reservation component
 * @returns {JSX.Element}
 */
 export default function ReservationSeat() {
-    const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
-
     const [tables, setTables] = useState([]);
     const [tableId, setTableId] = useState(0);
 
     const [reservation, setReservation] = useState([]);
+    const [reservationsError, setReservationsError] = useState(null);
     const { reservation_id } = useParams();
 
     const history = useHistory();
 
-    useEffect(loadTables, []);
-    useEffect(loadReservation, [API_BASE_URL, reservation_id]);
-
-    function loadTables() {
+    useEffect(() => {
         const abortController = new AbortController();
 
         listTables(abortController.signal)
@@ -33,13 +28,22 @@ export default function ReservationSeat() {
             .catch(error => console.error(error));
 
         return () => abortController.abort();
-    }
+    }, []);
 
-    function loadReservation() {
-        axios.get(`${API_BASE_URL}/reservations/${reservation_id}`)
-            .then(setReservation)
-            .catch(console.error);
-    }
+
+    // fetch Reservation
+    useEffect(() => {
+        async function fetchReservation() {
+            const response = await readReservation(reservation_id);
+            const fetchedReservation = response.data.data;
+
+            fetchedReservation.reservation_date = fetchedReservation.reservation_date.slice(0, 10);
+            fetchedReservation.reservation_time = fetchedReservation.reservation_time.slice(0, 5);
+
+            setReservation(fetchedReservation);
+        }
+        fetchReservation();
+    }, [reservation_id]);
 
 
     const tableOptions = tables.map((table, index) => {
@@ -50,13 +54,15 @@ export default function ReservationSeat() {
 
     const handleChange = (e) => setTableId(e.target.value);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (reservation_id)
-            axios.put(`${API_BASE_URL}/tables/${tableId}/seat`, { data: { reservation_id: reservation_id } })
-                .then(response => response.status === 200 ? history.push(`/dashboard`) : null)
-                .catch(error => console.log(error));
+        const status = await seatReservation(tableId, reservation_id);
+
+        if (status === 200)
+            history.push(`/dashboard?date=${reservation.reservation_date}`);
+        else
+            setReservationsError(status);
     }
 
     const handleCancel = (e) => {
@@ -66,24 +72,24 @@ export default function ReservationSeat() {
     }
 
     return (
-        <div className='text-center'>
-            <h2 className='rtHead pb-2'>Seat Reservation</h2>
-            {reservation.data ?
-                <p>Choose a table to seat {`${reservation.data.data.first_name} ${reservation.data.data.last_name}'s party of `}<b>{reservation.data.data.people}</b>{reservation.data.data.people > 1 ? ` people.` : ` person.`}</p>
-                : ''}
-
-            <form onSubmit={handleSubmit}>
-                <div className='form-group'>
-                    <select
-                        name='table_id'
-                        onChange={handleChange}
-                    >
-                        {tableOptions}
-                    </select>
-                </div>
-                <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>
-                <button type='submit' className='button mx-3 px-3'>Submit</button>
-            </form>
-        </div>
+        <>
+            <div className='text-center'>
+                <h2 className='rtHead pb-2'>Seat Reservation</h2>
+                <p>Choose a table to seat the party</p>
+                <form onSubmit={handleSubmit}>
+                    <div className='form-group'>
+                        <select
+                            name='table_id'
+                            onChange={handleChange}
+                        >
+                            {tableOptions}
+                        </select>
+                    </div>
+                    <button onClick={handleCancel} className='button mx-3 px-3'>Cancel</button>
+                    <button type='submit' className='button mx-3 px-3'>Submit</button>
+                </form>
+            </div>
+            <ErrorAlert error={reservationsError} />
+        </>
     )
 }

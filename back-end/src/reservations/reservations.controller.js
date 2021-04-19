@@ -81,11 +81,21 @@ async function dateValidator(req, res, next) {
  * Timeline validation middleware
  */
 function timelineValidator(req, res, next) {
+  // Request Time
   const time = res.locals.reservation.reservation_time;
   let hour = time[0] + time[1];
   let minutes = time[3] + time[4];
   hour = Number(hour);
   minutes = Number(minutes);
+
+  // Current Time from Frontend Request
+  const currentTime = req.body.data.current_time;
+  const date = new Date(res.locals.reservation.reservation_date);
+  const currentDate = new Date();
+
+  // Checks to see if the requested time has passed and is on the current date
+  if (currentTime > time && date.toUTCString().slice(0, 16) === currentDate.toUTCString().slice(0, 16))
+    return next({ status: 400, message: "Time has already passed!" });
 
   if (hour < 10 || (hour <= 10 && minutes < 30))
     return next({ status: 400, message: "We're not open yet" });

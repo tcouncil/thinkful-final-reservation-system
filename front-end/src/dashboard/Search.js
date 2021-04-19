@@ -42,8 +42,7 @@ export default function Search() {
                     </div>
                     <button type='submit' className='button mx-3 px-3'>Find</button>
                 </form>
-                {reservationsContent.length !== 0 ? <h3>Reservations</h3> : ''}
-                {reservationsContent.length === 0 ? <ErrorAlert error={reservationsError} /> : ''}
+                <ErrorAlert error={reservationsError} />
                 {reservationsContent}
             </div>
         </>

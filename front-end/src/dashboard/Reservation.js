@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-
+import { cancelReservation } from '../utils/api';
 
 /**
 * Reservation Card Component
@@ -10,16 +9,18 @@ import axios from 'axios';
 * @returns {JSX.Element}
 */
 export default function Reservation({ reservation }) {
-    const API_BASE_URL =
-        process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
-
-    const handleCancel = (e) => {
+    /**
+     * Handles cancellation request
+     * @param e 
+     */
+    const handleCancel = async (e) => {
         e.preventDefault();
 
         if (window.confirm('Do you want to cancel this reservation? This cannot be undone.')) {
-            axios.put(`${API_BASE_URL}/reservations/${reservation.reservation_id}/status`, { data: { status: 'cancelled' } })
-                .then(response => response.status === 200 ? window.location.reload() : null)
-                .catch(console.error);
+            const status = await cancelReservation(reservation.reservation_id);
+
+            if (status === 200)
+                window.location.reload()
         }
     }
 
